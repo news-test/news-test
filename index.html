@@ -26,7 +26,7 @@
       document.addEventListener(
         "DOMContentLoaded",
         function() {
-          fetch("http://download.flowfact.me/flowfact-news.json", {'mode': 'no-cors'})
+          fetch("https://download.flowfact.me/flowfact-news.json", {'mode': 'no-cors'})
             .then(response => response.json())
             .then(json => loadRecentNews(json));
         },
