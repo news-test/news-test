@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flowfact News</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" type="text/css" href="news.css" />
+  </head>
+  <body
+    style="display: block; margin-left: auto; margin-right: auto; width: 50%;"
+  >
+    <div>
+      <h4
+        class="MuiTypography-root MuiTypography-h4 DashboardCard-padding DashboardCard-title"
+      >
+        News
+      </h4>
+      <div class="DashboardCard-divider"></div>
+    </div>
+    <div id="newsContent"></div>
+
+    <script type="text/javascript">
+      document.addEventListener(
+        "DOMContentLoaded",
+        function() {
+          fetch("http://download.flowfact.me/flowfact-news.json", {'mode': 'no-cors'})
+            .then(response => response.json())
+            .then(json => loadRecentNews(json));
+        },
+        false
+      );
+      function loadRecentNews(news) {
+        let newsContentDiv = document.getElementById("newsContent");
+        let rootContentDiv = document.createElement("div");
+        if (typeof news !== "undefined" && news.length > 0) {
+          news.forEach(function(newsElement) {
+            rootContentDiv.className = "MuiButtonBase-root DashboardCard-root";
+            rootContentDiv.appendChild(
+              createImageContent(newsElement.image)
+            );
+            rootContentDiv.appendChild(createTitleContent(newsElement.headline));
+            rootContentDiv.appendChild(
+              createDescriptionContent(newsElement.content)
+            );
+            rootContentDiv.appendChild(
+              createButtonContent(newsElement.targetUrl)
+            );
+            newsContentDiv.appendChild(rootContentDiv);
+          });
+        } else {
+          rootContentDiv.appendChild(createTitleContent("No news available"));
+          newsContentDiv.appendChild(rootContentDiv);
+        }
+      }
+      function createImageContent(src) {
+        let contentDiv = document.createElement("div");
+        contentDiv.className = "DashboardCard-content DashboardCard-padding";
+        let image = document.createElement("img");
+        image.src = src;
+        image.style = "width:100%; height:300px; object-fit: cover;";
+        contentDiv.appendChild(image);
+        return contentDiv;
+      }
+      function createTitleContent(title) {
+        let contentDiv = document.createElement("div");
+        contentDiv.className = "DashboardCard-content DashboardCard-padding";
+        let hTitle = document.createElement("h3");
+        hTitle.className =
+          "MuiTypography-root MuiTypography-h3 DashboardCard-padding DashboardCard-title";
+        hTitle.innerText = title;
+        contentDiv.appendChild(hTitle);
+        return contentDiv;
+      }
+      function createDescriptionContent(description) {
+        let contentDiv = document.createElement("div");
+        contentDiv.className = "DashboardCard-content DashboardCard-padding";
+        let span = document.createElement("span");
+        span.className = "MuiTypography-root MuiTypography-caption";
+        span.innerText = description;
+        contentDiv.appendChild(span);
+        return contentDiv;
+      }
+      function createButtonContent(targetURL) {
+        let contentDiv = document.createElement("div");
+        contentDiv.className = "DashboardCard-content DashboardCard-padding";
+        let button = document.createElement("a");
+        button.href=targetURL;
+        button.target='_blank';
+
+        button.className =
+          "MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-raised MuiButton-raisedPrimary";
+        let span = document.createElement("span");
+        span.className = "MuiButton-label";
+        span.innerText = "Read more...";
+        button.appendChild(span);
+        contentDiv.appendChild(button);
+        return contentDiv;
+      }
+    </script>
+  </body>
+</html>
