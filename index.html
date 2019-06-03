@@ -26,9 +26,12 @@
       document.addEventListener(
         "DOMContentLoaded",
         function() {
-          fetch("https://download.flowfact.me/flowfact-news.json", {'mode': 'no-cors'})
+          /*fetch("https://download.flowfact.me/flowfact-news.json", {'mode': 'no-cors'})
             .then(response => response.json())
-            .then(json => loadRecentNews(json));
+            .then(json => loadRecentNews(json));*/
+
+            let mock = '[{"image": "https://my.flowfact.com/wp-content/cache/borlabs_cookie/uGosvEWc9rw_maxresdefault.jpg","headline": "My Samplecontent wiht long headline for testing.","content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu","targetUrl": ""},{"image": "","headline": "My short headline.","content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, ","targetUrl": ""},{"image": "https://my.flowfact.com/wp-content/cache/borlabs_cookie/a5aLiZmXxqo_maxresdefault.jpg","headline": "My short headline.","content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, ","targetUrl": ""},{"image": "https://my.flowfact.com/wp-content/uploads/2018/12/360GradRundgaenge-26.png","headline": "My short headline.","content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, ","targetUrl": ""}]';
+            loadRecentNews(JSON.parse(mock));
         },
         false
       );
