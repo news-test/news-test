@@ -39,6 +39,8 @@
         let rootContentDiv = document.createElement("div");
         if (typeof news !== "undefined" && news.length > 0) {
           news.forEach(function(newsElement) {
+            let rootContentDiv = document.createElement("div");
+            rootContentDiv.style="margin-bottom:5%";
             rootContentDiv.className = "MuiButtonBase-root DashboardCard-root";
             rootContentDiv.appendChild(
               createImageContent(newsElement.image)
@@ -53,6 +55,7 @@
             newsContentDiv.appendChild(rootContentDiv);
           });
         } else {
+          let rootContentDiv = document.createElement("div");
           rootContentDiv.appendChild(createTitleContent("No news available"));
           newsContentDiv.appendChild(rootContentDiv);
         }
@@ -91,7 +94,6 @@
         let button = document.createElement("a");
         button.href=targetURL;
         button.target='_blank';
-        button.style="margin-bottom:10%"
         button.className =
           "MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-raised MuiButton-raisedPrimary";
         let span = document.createElement("span");
